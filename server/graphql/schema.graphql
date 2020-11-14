@@ -1,0 +1,22 @@
+type message {
+  id: ID!
+  message: String!
+}
+
+input MessageInput {
+  id: ID!
+  message: String!
+}
+
+type Query {
+  AllMessages: [message]
+}
+
+type Mutation {
+  createMessage(newMessage: MessageInput!): message
+  deleteMessage(MsgId: String!): String
+}
+#not working yet
+type Subscription {
+  onDeleteMessage: String @aws_subscribe(mutations: ["deleteMessage"])
+}
